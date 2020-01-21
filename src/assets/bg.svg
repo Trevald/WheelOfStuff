@@ -1,0 +1,11 @@
+<svg width="1194" height="834" viewBox="0 0 1194 834" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="3.05176e-05" width="1194" height="834" fill="#89237E" style="mix-blend-mode:overlay"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M425.128 -345.857L597 417L151.858 -225.951C63.0963 -164.498 -6.25148 -92.1904 -63.9582 -0.920584L597 417L-172.37 277.133C-191.678 383.342 -189.579 483.531 -165.857 588.872L597 417L-45.9039 862.15C15.5497 950.912 87.857 1020.26 179.127 1077.97L597 417L457.133 1186.37C563.342 1205.68 663.531 1203.58 768.872 1179.86L597 417L1042.15 1059.9C1130.91 998.45 1200.26 926.143 1257.97 834.873L597 417L1366.37 556.867C1385.68 450.658 1383.58 350.469 1359.86 245.128L597 417L1239.9 -28.1505C1178.45 -116.912 1106.14 -186.26 1014.87 -243.967L597 417L736.867 -352.37C630.658 -371.678 530.469 -369.579 425.128 -345.857Z" fill="black" fill-opacity="0.1"/>
+<rect x="3.05176e-05" width="1194" height="834" fill="url(#paint0_radial)" style="mix-blend-mode:overlay"/>
+<defs>
+<radialGradient id="paint0_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(597 417) rotate(90) scale(417 597)">
+<stop stop-color="white" stop-opacity="0.24"/>
+<stop offset="1" stop-opacity="0.38"/>
+</radialGradient>
+</defs>
+</svg>
