@@ -68,8 +68,8 @@ export default {
         },
 
         labels() {
-            return this.origLabels;
-            // return this.origLabels.concat(this.origLabels);
+            // return this.origLabels;
+            return this.origLabels.length < 2 ? this.origLabels.concat(this.origLabels) : this.origLabels;
         }
     },
 
@@ -150,21 +150,21 @@ export default {
         },
 
         resetWheel() {
-           return this.wheelRotation !== undefined ? Math.ceil(this.wheelRotation) : 1;
+           return this.wheelRotation !== undefined ? Math.ceil(this.wheelRotation) + 1 : 1;
         },
 
         spinWheel() {
             const resetValue = this.resetWheel();
 
             this.winner = this.getRandomInt(0, this.numOfParts);
-            const baseTurns = this.getRandomInt(2, 4);
-            const interimTurns = this.getRandomInt(3, 5);
+            const baseTurns = this.getRandomInt(2, 3);
+            const interimTurns = this.getRandomInt(3, 4);
             const winnerOffset = 1 - (this.winner / this.numOfParts);
-            const compensation = -0.25 + ((1/this.numOfParts) / 2);
+            const compensation = -0.25 + (((1/this.numOfParts) / 2) / this.getRandomInt(1, 3));
             const turns = baseTurns + winnerOffset + compensation;
             
             // eslint-disable-next-line no-console
-            console.log("2", winnerOffset);
+            console.log("2", winnerOffset, 1/this.numOfParts);
 
             this.wheelRotation =  interimTurns + turns + compensation;
 
@@ -185,13 +185,19 @@ export default {
                         duration: interimTurns * 1000,
                         easing: "linear"
                     },
+                   
                     {
                         value: `+=${turns}turn`,
-                        duration: turns * 6500,
-                        easing: "easeOutQuint"
+                        duration: turns * this.getRandomInt(4000, 6000),
+                        easing: "cubicBezier(0.150, 0.50, 0.250, 1.000)"
+                        // easing: "easeOutSine"
                         // easing: "cubicBezier(0.1, 0.5, 0.1, 1)"
                     }
-                ]
+                ],
+
+                complete: () => {
+                   // alert(`Winner is ${this.labels[this.winner]}`);
+                }
                 
             });
         }
