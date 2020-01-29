@@ -2,14 +2,21 @@
   <div id="wheel">
       <div class="wheel-wrapper">
         <svg viewBox="0 0 500 500" class="wheel" ref="wheel">
+            <ellipse class="wheel-background" cx="250" cy="250" rx="250" ry="250" fill="#D24683"/>
             <g v-for="(label, index) in labels" :key="index" :transform="getPathTransform(index)">
                 <path :d="getSVGData()" :fill="getFillColor(index)"  />
-                <text x="460" y="250" :fill="getTextFill(index)" text-anchor="end" :transform="getTextTransform(index)">{{label}}</text>
+                <text x="450" y="250" :fill="getTextFill(index)" text-anchor="end" :transform="getTextTransform(index)">{{label.title}}</text>
             </g>
+
+            <ellipse class="wheel-dots" cx="251" cy="251" rx="225" ry="225" fill="transparent" stroke="#000000" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
+            <ellipse class="wheel-dots" cx="250" cy="250" rx="225" ry="225" fill="transparent" stroke="#4B5156" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
+        
         </svg>
       </div>
-    <div  style="position: fixed; top: 10px; left: 10px;">
-        <button type="button" @click="spinWheel($event)">Spinn</button>
+    <div class="wheel-border"></div>
+    <div class="wheel-middle"></div>      
+      <div class="top"></div>
+    <div  style="position: fixed; top: 10px; left: 10px; display: none;">
         <p style="color: white; margin-top: 20px; font-size: 18px;">{{labels[winner]}}</p>
     </div>
   </div>
@@ -26,21 +33,15 @@ export default {
     
   },
 
+  props: {
+      items: Array
+  },
+
   data() {
       return {
+          isspining: false,
           winner: undefined,
           wheelRotation: undefined,
-          origLabels: [
-              "Apple",
-              "Banana",
-              "Blueberry",
-              "Lemon",
-              "Orange",
-              "Pear",
-              "Pineapple",
-              "Raspberry",
-              "Strawberry"
-          ],
           bgColors: [
               "#D24683",
               "#9559E2",
@@ -67,9 +68,13 @@ export default {
             return this.labels.length;
         },
 
+        localItems() {
+            return this.items.filter( item => item.title !== "");
+        },
+
         labels() {
             // return this.origLabels;
-            return this.origLabels.length < 2 ? this.origLabels.concat(this.origLabels) : this.origLabels;
+            return this.localItems.length < 2 ? this.localItems.concat(this.localItems) : this.localItems;
         }
     },
 
@@ -142,7 +147,6 @@ export default {
             const brightness = bgColor.getBrightness();
 
             return brightness < 125 ? "rgba(255, 250, 245, 0.95)" : "rgba(0, 0, 150, 0.9)";
-
         },
 
         getRandomInt(min, max) {
@@ -157,8 +161,8 @@ export default {
             const resetValue = this.resetWheel();
 
             this.winner = this.getRandomInt(0, this.numOfParts);
-            const baseTurns = this.getRandomInt(2, 3);
-            const interimTurns = this.getRandomInt(3, 4);
+            const baseTurns = this.getRandomInt(1, 2);
+            const interimTurns = this.getRandomInt(2, 3);
             const winnerOffset = 1 - (this.winner / this.numOfParts);
             const compensation = -0.25 + (((1/this.numOfParts) / 2) / this.getRandomInt(1, 3));
             const turns = baseTurns + winnerOffset + compensation;
@@ -195,7 +199,19 @@ export default {
                     }
                 ],
 
+                begin: () => {
+                    this.isspining = true;
+                    this.$emit('spin-begin');
+                    // eslint-disable-next-line no-console
+                    console.log("b", this);                    
+                },
+
                 complete: () => {
+                    this.isspining = false;
+                    this.$emit('spin-complete', {
+                        winner: this.labels[this.winner].title,
+                        color: this.getFillColor(this.winner)
+                    });
                    // alert(`Winner is ${this.labels[this.winner]}`);
                 }
                 
@@ -210,32 +226,71 @@ export default {
 
 #wheel {
     font-size: 1px;
+    position: relative;
 }
 
 .wheel-wrapper {
     overflow: hidden;
     padding: 15px;
+    position: relative;
 }
 
 .wheel {
-    width: 85vh;
-    height: 85vh;
+    width: 75vh;
+    height: 75vh;
     filter: drop-shadow(rgba(0,0,0,0.25) 0 2px 15px);
     will-change: transform;
 }
 
+.wheel-border {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    pointer-events: none;
+
+    background: url(../assets/wheel-overlay.svg) 0 0 no-repeat;
+    background-size: 100% 100%;
+}
+
+.wheel-middle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    left: 10px;
+    pointer-events: none;
+
+    background: url(../assets/wheel-middle@4x.png) 50% 50% no-repeat;
+    background-size: 15% 15%;
+}
+
+
+.top {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-top: 0.25%;
+    width: 3.5%;
+    height: 3.5%;
+    background: url(../assets/top.png) 0 0 no-repeat;
+    background-size: 100% auto;
+    transform: translate(-50%, 0);
+}
+
 @media (orientation: portrait) {
     .wheel {
-        width: 85vw;
-        height: 85vw;
+        width: 75vw;
+        height: 75vw;
     }
 }
 
 text {
-    font-family: "Helvetica Neue";
-    font-size: 1vh;
+    font-family: 'Henny Penny', cursive;
+    font-size: 2vh;
     font-weight: 900;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
     /*fill: rgba(2505, 255, 255, 1);*/
     filter: drop-shadow(rgba(0,0,0,1) 0 1px 10px);
 }
@@ -245,5 +300,6 @@ text {
         font-size: 2vw;
     }
 }
+
 
 </style>
