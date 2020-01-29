@@ -101,18 +101,21 @@ font-family: 'Lobster Two', cursive;
 html, body {
     min-height: 100%;
     display: flex;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     flex: 1 1 auto;
     align-items: stretch;
     justify-content: stretch;
-    background: url(assets/bg.svg) 50% 50% no-repeat;
+    background: #89237E url(assets/bg.svg) 50% 50% no-repeat;
     background-size: cover;
 }
     
 #app {
     flex: 1 1 auto;
+    
     display: flex;
     align-items: stretch;
     justify-content: center;
@@ -196,7 +199,7 @@ body {
     flex: 1 1 auto;
     display: flex;
     justify-content: space-between;
-    padding-bottom: 2rem;
+    padding: 2rem;
 }
 
 .layout .main {

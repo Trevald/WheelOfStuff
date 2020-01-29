@@ -83,6 +83,7 @@ export default {
     width: 100%;
 
     background: url(./../assets/sun.svg) 50% 50% no-repeat;   
+    background-size: 150% auto;
 }
 
 
