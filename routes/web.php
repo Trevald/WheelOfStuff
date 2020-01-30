@@ -11,12 +11,18 @@
 |
 */
 
+/*
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+*/
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('wheel/{guid}', 'WheelController@show');
     $router->post('wheel', 'WheelController@create');
     $router->put('wheel/{guid}', 'WheelController@update');
+});
+
+$router->get('/{route:.*}/', function ()  {
+    return view('app');
 });
