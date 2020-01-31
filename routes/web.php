@@ -20,7 +20,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('wheel/{guid}', 'WheelController@show');
     $router->post('wheel', 'WheelController@create');
-    $router->put('wheel/{guid}', 'WheelController@update');
+    // $router->put('wheel/{guid}', 'WheelController@update');
 });
 
 $router->get('/{route:.*}/', function ()  {

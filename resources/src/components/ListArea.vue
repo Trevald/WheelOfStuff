@@ -61,6 +61,13 @@ textarea {
     resize: none;
 }
 
+@media (orientation: portrait) {
+
+    textarea {
+        font-size: 2.5vw;
+    }
+}
+
 textarea:focus {
     outline: none;
 }

@@ -79,6 +79,13 @@ export default {
     justify-content: stretch;
 }
 
+@media (orientation: portrait) {
+
+    .list {
+        padding: 3vw 0 0 0;
+    }
+}
+
 .list-wrapper {
     position: relative;
     flex: 1 1 auto;
@@ -107,6 +114,13 @@ export default {
     background: linear-gradient(180deg, #68B954 0%, #418D36 47.92%, #1F551E 100%);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.35), inset 0px 1px 1px rgba(255, 255, 255, 0.15);
     border-radius: 5px;
+}
+
+@media (orientation: portrait) {
+
+    .list-legend {
+        font-size: 2vw;
+    }
 }
 
 .list-content {
@@ -149,20 +163,11 @@ input[type="text"]:focus {
     text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.75);
 }
 
-ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+@media (orientation: portrait) {
 
-li {
-    margin: 0;
-    padding: 0 1rem;
-}
-
-li input {
-    
-    font-size: 2.5vh;
+    .list-title {
+        font-size: 4vw;
+    }
 }
 
 </style>

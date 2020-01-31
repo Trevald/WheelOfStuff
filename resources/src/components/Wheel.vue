@@ -236,8 +236,10 @@ export default {
 }
 
 .wheel {
-    width: 75vh;
-    height: 75vh;
+    width: 50vw;
+    height: 50vw;
+    max-width: 70vh;
+    max-height: 70vh;
     filter: drop-shadow(rgba(0,0,0,0.25) 0 2px 15px);
     will-change: transform;
 }
@@ -279,16 +281,19 @@ export default {
     transform: translate(-50%, 0);
 }
 
+
 @media (orientation: portrait) {
+    /*
     .wheel {
-        width: 75vw;
-        height: 75vw;
+        width: 55vh;
+        height: 55vh;
     }
+    */
 }
 
 text {
     font-family: 'Henny Penny', cursive;
-    font-size: 2vh;
+    font-size: 1.25vw;
     font-weight: 900;
     letter-spacing: 0.1em;
     /*fill: rgba(2505, 255, 255, 1);*/
@@ -297,7 +302,7 @@ text {
 
 @media (orientation: portrait) {
     text {
-        font-size: 2vw;
+        font-size: 1.25vh;
     }
 }
 

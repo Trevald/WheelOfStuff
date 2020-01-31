@@ -144,7 +144,7 @@ body {
     appearance: none;
 
     font-family: 'Lobster Two', cursive;
-    font-size: 5vh;
+    font-size: 4vh;
     letter-spacing: 0.1em;
     text-align: center;
     color: #253F2B;
@@ -157,6 +157,12 @@ body {
     border: none;
 
     transition: all .3s ease;
+}
+
+@media (orientation: portrait) {
+    .btn-spin {
+        font-size: 4vw;
+    }
 }
 
 .btn-spin:hover {
@@ -186,11 +192,15 @@ body {
 
 .btn-wrapper {
     padding: 2vh;
-    
-
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 0.01%, rgba(0, 0, 0, 0.05) 100%);
     box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.1);
     border-radius: 100px;
+}
+
+@media (orientation: portrait) {
+    .btn-wrapper {
+        padding: 2vw;
+    }
 }
 
 /* Layout */
@@ -203,24 +213,32 @@ body {
 }
 
 .layout .main {
+    
     display: flex;
-    flex: 1 1 60%;
-    min-width: 60%;
+    flex: 1 1 60vw;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 }
 
-.layout .main .one {}
+.layout .main .one {
+}
 
-.layout .main .two {}
+.layout .main .two {
+    padding: 2rem 0 0 0;
+}
 
 .layout .aside {
-    flex: 1 1 35%;
+    
+    flex: 1 1 25vw;
     display: flex;
-    min-width: 35%;
     justify-content: stretch;
     align-items: stretch;
+}
+
+@media (orientation: portrait) {
+
+    .layout {}
 }
 
 
