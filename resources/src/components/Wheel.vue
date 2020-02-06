@@ -230,7 +230,6 @@ export default {
 }
 
 .wheel-wrapper {
-    overflow: hidden;
     padding: 15px;
     position: relative;
 }

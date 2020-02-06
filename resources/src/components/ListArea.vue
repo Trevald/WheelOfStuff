@@ -54,7 +54,7 @@ textarea {
     border: none;
 
     font-family: Henny Penny;
-    font-size: 2.5vh;
+    font-size: 2vh;
     line-height: 2.5;
     letter-spacing: 0.05em;
     color: rgba(253, 254, 208, 0.9);

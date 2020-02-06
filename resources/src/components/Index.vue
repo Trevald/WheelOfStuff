@@ -219,28 +219,25 @@ export default {
 .layout {
     flex: 1 1 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: stretch;
     padding: 2rem;
 }
 
 .layout .main {
     display: flex;
-    flex: 1 1 60vw;
-    flex-direction: column;
-    justify-content: flex-start;
+    flex: 0 0 auto;
+    justify-content: center;
     align-items: center;
-}
-
-.layout .main .two {
-    padding: 2rem 0 0 0;
+    padding: 0 2vw 0 0;
 }
 
 .layout .aside {
-    flex: 1 1 25vw;
+    flex: 0 1 30vw;
     display: flex;
     justify-content: stretch;
     align-items: stretch;
-    padding: 1.5rem 0;
+    padding: 1.5rem 0 1.5rem 2vw;
 }
 
 @media (orientation: portrait) {
@@ -404,15 +401,27 @@ export default {
     justify-content: center;
     align-items: center;
 
-    filter: drop-shadow(rgba(0, 0, 0, 0.75) 2px 2px 1px)
+    filter: drop-shadow(rgba(0, 0, 0, 0.75) 2px 2px 1px);
+
+    transition: all .3s ease;
 }
 
 .btn-share svg {
     flex: 1 1 auto;
+    transition: inherit;
 }
 
 .btn-share path {
     fill: #E6EABE;
+    transition: inherit;
+}
+
+.btn-share:hover svg {
+    transform: scale(1.5) translateY(-25%);
+}
+
+.btn-share:hover path {
+    fill: white;
 }
 
 

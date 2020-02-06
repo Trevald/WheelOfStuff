@@ -32,7 +32,7 @@ class WheelController extends Controller
         $wheel->data = $request;
         $request->save();
 
-        return $request;
+        return $request->id;
     }
     
 
