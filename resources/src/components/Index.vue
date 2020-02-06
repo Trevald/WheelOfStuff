@@ -21,7 +21,7 @@
                         </div>
                         <div class="actions">
                             <button :disabled="isSpinning" @click="spinWheel()"  class="btn-spin-2">Spin!</button>
-                            <button class="btn-share">
+                            <button class="btn-share" @click="share()" :disabled="isSharing">
                                 <span class="visually-hidden">Share</span>
                                 <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.5 19.5H16.5V6H19.5L15 0L10.5 6H13.5V19.5ZM25.5 10.5H21V13.5H24V27H6V13.5H9V10.5H4.5C3.6705 10.5 3 11.1705 3 12V28.5C3 29.328 3.6705 30 4.5 30H25.5C26.3295 30 27 29.328 27 28.5V12C27 11.172 26.3295 10.5 25.5 10.5Z" />
@@ -55,8 +55,8 @@ export default {
 
   data() {
       return {
-          id: undefined,
           winner: undefined,
+          isSharing: false,
           isSpinning: false,
           title: undefined,
           items: undefined
@@ -79,11 +79,31 @@ export default {
 
     methods : {
 
+        share() {
+            this.isSharing = true;
+            const apiUrl = window.APP_API_URL; // Vue.prototype.$api;
+
+            fetch(`${apiUrl}/api/wheel`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                        title: this.title,
+                        items: this.items
+                    })
+                }).then((response) => {
+                    this.isSharing = false;
+                    // eslint-disable-next-line no-console
+                    console.log("POST", response);
+                });
+        },
+
         getWheel(id) {
             const uuid = id !== undefined ? id : "random";
 
 // eslint-disable-next-line no-console
-      console.log(uuid, window.APP_API_URL);
+      console.log("getWheel", uuid, window.APP_API_URL);
 
       const apiUrl = window.APP_API_URL; // Vue.prototype.$api;
 
@@ -416,12 +436,16 @@ export default {
     transition: inherit;
 }
 
-.btn-share:hover svg {
+.btn-share:not(:disabled):hover svg {
     transform: scale(1.5) translateY(-25%);
 }
 
-.btn-share:hover path {
+.btn-share:not(:disabled):hover path {
     fill: white;
+}
+
+.btn-share:disabled {
+    opacity: 0.5;
 }
 
 

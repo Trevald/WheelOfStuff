@@ -23,16 +23,18 @@ class WheelController extends Controller
         }
 
         $result = Wheel::findOrFail($uuid);
+        // dd($result);
 
         return response()->json(json_decode($result->data));
     }
 
     public function create(Request $request) {
         $wheel = new Wheel;
-        $wheel->data = $request;
-        $request->save();
+        
+        $wheel->data = $request->getContent();
+        $wheel->save();
 
-        return $request->id;
+        return $wheel->id;
     }
     
 
