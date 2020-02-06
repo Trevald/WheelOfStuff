@@ -34,7 +34,8 @@ class WheelController extends Controller
         $wheel->data = $request->getContent();
         $wheel->save();
 
-        return $wheel->id;
+        // return array("id" => $wheel->id);
+        return url('/') . '/' . $wheel->id;
     }
     
 

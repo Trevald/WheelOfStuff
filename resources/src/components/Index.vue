@@ -96,6 +96,11 @@ export default {
                     this.isSharing = false;
                     // eslint-disable-next-line no-console
                     console.log("POST", response);
+
+                    return response.text();
+                    
+                }).then((data) => {
+                    navigator.clipboard.writeText(`${data}`);
                 });
         },
 
