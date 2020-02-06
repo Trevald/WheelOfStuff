@@ -44,11 +44,11 @@ export default {
 
 textarea {
     appearance: none;
-    margin: 0;
-    padding: 1rem;
+    margin: 0.5rem 0.25rem;
+    padding: 0 1rem;
     display: flex;
     flex: 1 1 auto;
-    width: 100%;
+    width: auto;
     background: transparent;
     box-shadow: none;    
     border: none;

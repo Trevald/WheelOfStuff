@@ -11,18 +11,25 @@
 |
 */
 
+
 /*
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 */
 
+
+
 $router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('wheel/{guid}', 'WheelController@show');
+ 
+    
+    $router->get('wheel/{uuid}', 'WheelController@show');
     $router->post('wheel', 'WheelController@create');
+
     // $router->put('wheel/{guid}', 'WheelController@update');
 });
 
+$router->get('api/wheel/{uuid}', 'WheelController@show');
 $router->get('/{route:.*}/', function ()  {
     return view('app');
 });

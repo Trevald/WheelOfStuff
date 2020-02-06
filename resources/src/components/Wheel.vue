@@ -74,7 +74,7 @@ export default {
 
         labels() {
             // return this.origLabels;
-            return this.localItems.length < 2 ? this.localItems.concat(this.localItems) : this.localItems;
+            return this.localItems.length < 8 ? this.localItems.concat(this.localItems) : this.localItems;
         }
     },
 
@@ -236,10 +236,10 @@ export default {
 }
 
 .wheel {
-    width: 50vw;
-    height: 50vw;
-    max-width: 70vh;
-    max-height: 70vh;
+    width: 55vw;
+    height: 55vw;
+    max-width: 90vh;
+    max-height: 90vh;
     filter: drop-shadow(rgba(0,0,0,0.25) 0 2px 15px);
     will-change: transform;
 }
@@ -283,12 +283,14 @@ export default {
 
 
 @media (orientation: portrait) {
-    /*
+
     .wheel {
         width: 55vh;
         height: 55vh;
+        max-width: 55vw;
+        max-height: 55vw;
     }
-    */
+
 }
 
 text {

@@ -14,7 +14,8 @@ class CreateWheelsTable extends Migration
     public function up()
     {
         Schema::create('wheels', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->uuid('id')->primary();
+            $table->boolean('public')->default(false);
             $table->json('data');
             $table->timestamps();
         });
