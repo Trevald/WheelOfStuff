@@ -32,9 +32,11 @@
                 </div>                
             </div>
         </div>
-        <transition name="winner">
-            <Winner :winner="winner" v-if="winner"></Winner>
-        </transition>
+        <div class="winner-wrapper">
+            <transition name="winner">
+                <Winner :winner="winner" v-if="winner"></Winner>
+            </transition>
+        </div>
         
     </div>
 </template>
@@ -167,6 +169,19 @@ export default {
     display: flex;
     align-items: stretch;
     justify-content: center;
+
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.winner-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateZ(1000px);
+transform-style: preserve-3d;
+pointer-events: none;
 }
 
 
@@ -193,6 +208,9 @@ export default {
     border: none;
 
     transition: all .3s ease;
+    will-change: transform;
+    
+    transform: translate3d(0,0,0);    
 }
 
 @media (orientation: portrait) {
@@ -326,6 +344,7 @@ export default {
     border: none;
     transition: all .3s ease;
     animation: glowText 3s ease infinite; 
+    mask-image: -webkit-radial-gradient(white, black);
 }
 
 .btn-spin:focus {

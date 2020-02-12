@@ -55,6 +55,7 @@ export default {
 
 .winner {
     position: fixed;
+    z-index: 90;
     top: 0;
     right: 0;
     bottom: 10vh;
@@ -63,6 +64,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+        will-change: transform;
+    transform: translate3d(0,0,0);
 }
 
 .box {

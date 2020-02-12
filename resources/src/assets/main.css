@@ -161,3 +161,7 @@ input[type="text"]:focus {
         font-size: 4vw;
     }
 }
+
+#confetti-canvas {
+    z-index: 100;
+}
