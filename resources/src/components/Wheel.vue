@@ -286,6 +286,7 @@ export default {
 .wheel-wrapper {
     padding: 15px;
     position: relative;
+    overflow: hidden;
 }
 
 .wheel {

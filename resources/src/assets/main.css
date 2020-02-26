@@ -165,3 +165,82 @@ input[type="text"]:focus {
 #confetti-canvas {
     z-index: 100;
 }
+
+
+/*
+ * Alert
+*/
+
+
+.alert {
+    position: fixed;
+    z-index: 90;
+    top: 0;
+    right: 0;
+    bottom: 10vh;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+        will-change: transform;
+    transform: translate3d(0,0,0);
+    pointer-events: all;
+}
+
+.alert .box {
+    display: flex;
+    width: 60vw;
+    height: 50vh;
+
+    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.75);
+    border-radius: 15px;
+
+}
+
+.alert .sun {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    background: url(./../assets/sun.svg) 50% 50% no-repeat;   
+    background-size: 150% auto;
+}
+
+.alert .content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.alert .legend {
+    margin: 0 0 1vh 0;
+    font-family: Lobster Two;
+    font-size: 2.5vh;
+    line-height: 1em; 
+    text-align: center;
+    letter-spacing: 0.05em;
+      
+    text-align: center;
+
+text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
+
+    
+}
+
+.alert .title {
+    margin: 0;
+    font-family: Henny Penny;
+    font-size: 6vh;
+    letter-spacing: 0.05em;
+    text-align: center;
+
+text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
+
+    
+
+}

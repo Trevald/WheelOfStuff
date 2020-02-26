@@ -10,18 +10,11 @@
                         <p class="list-legend">Wheel of</p>
                         <div class="list-content">
                             <input class="list-title"  type="text" v-model="title">
-                            <!--
-                            <ul>
-                                <li v-for="(item, index) in items" :key="index">
-                                    <input type="text" placeholder="New item" v-model="item.title" @input="shouldAddNew(index)" :key="index" @keyup.8="shouldDelete(index)">
-                                </li>
-                            </ul>    
-                            -->
                             <ListArea :items="items" @change="itemsChange"></ListArea>
                         </div>
                         <div class="actions">
                             <button :disabled="isSpinning" @click="spinWheel()"  class="btn-spin-2">Spin!</button>
-                            <button class="btn-share" @click="share()" :disabled="isSharing">
+                            <button class="btn-share" @click.stop="share()" :disabled="isSharing">
                                 <span class="visually-hidden">Share</span>
                                 <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M13.5 19.5H16.5V6H19.5L15 0L10.5 6H13.5V19.5ZM25.5 10.5H21V13.5H24V27H6V13.5H9V10.5H4.5C3.6705 10.5 3 11.1705 3 12V28.5C3 29.328 3.6705 30 4.5 30H25.5C26.3295 30 27 29.328 27 28.5V12C27 11.172 26.3295 10.5 25.5 10.5Z" />
@@ -32,10 +25,13 @@
                 </div>                
             </div>
         </div>
-        <div class="winner-wrapper">
-            <transition name="winner">
+        <div class="alert-wrapper">
+            <transition name="alert">
                 <Winner :winner="winner" v-if="winner"></Winner>
             </transition>
+            <transition name="alert">
+                <Share :title="title" :url="url" v-if="isSharing"></Share>
+            </transition>            
         </div>
         
     </div>
@@ -44,6 +40,7 @@
 <script>
 
 import ListArea from "./ListArea";
+import Share from "./Share";
 import Wheel from "./Wheel";
 import Winner from "./Winner";
 
@@ -51,6 +48,7 @@ export default {
   name: 'app',
   components: {
       ListArea,
+      Share,
       Wheel,
       Winner
   }, 
@@ -61,7 +59,8 @@ export default {
           isSharing: false,
           isSpinning: false,
           title: undefined,
-          items: undefined
+          items: undefined,
+          url: undefined
       }
   },
 
@@ -82,9 +81,8 @@ export default {
     methods : {
 
         share() {
-            this.isSharing = true;
             const apiUrl = window.APP_API_URL; // Vue.prototype.$api;
-
+        
             fetch(`${apiUrl}/api/wheel`, {
                 method: "POST",
                 headers: {
@@ -95,15 +93,17 @@ export default {
                         items: this.items
                     })
                 }).then((response) => {
-                    this.isSharing = false;
+                    // this.isSharing = false;
                     // eslint-disable-next-line no-console
                     console.log("POST", response);
-
+                    this.isSharing = true;
                     return response.text();
                     
                 }).then((data) => {
-                    navigator.clipboard.writeText(`${data}`);
-                });
+                    this.url = data;
+                    // navigator.clipboard.writeText(`${data}`);
+                });            
+            
         },
 
         getWheel(id) {
@@ -132,6 +132,10 @@ export default {
             if (this.winner !== undefined) {
                 this.winner = undefined;
                 this.$confetti.stop();
+            }
+
+            if (this.isSharing) {
+                this.isSharing = false;
             }
         },
 
@@ -173,8 +177,9 @@ export default {
     transform: translate3d(0px, 0px, 0px);
 }
 
-.winner-wrapper {
+.alert-wrapper {
     position: fixed;
+    z-index: 10;
     top: 0;
     right: 0;
     left: 0;
@@ -182,6 +187,8 @@ export default {
     transform: translateZ(1000px);
 transform-style: preserve-3d;
 pointer-events: none;
+overflow: hidden;
+
 }
 
 
@@ -291,21 +298,21 @@ pointer-events: none;
 
 /* Transitions */
 
-.winner-enter-active {
-    animation: flipInX 2s;
+.alert-enter-active {
+    animation: flipInX 1s;
     backface-visibility: visible !important;
 }
 
-.winner-leave-active {
+.alert-leave-active {
     animation: flipInX 0.5s reverse;
     backface-visibility: visible !important;
 }
 
-.winner-enter, .winner-leave-to {
+.alert-enter, .alert-leave-to {
     opacity: 1;
 }
 
-.winner-leave, .winner-enter-to {
+.alert-leave, .alert-enter-to {
     opacity: 1;
 }
 

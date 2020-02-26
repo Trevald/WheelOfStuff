@@ -1,5 +1,5 @@
 <template>
-    <div class="winner">
+    <div class="alert">
         <div class="box" :style="cssStyle">
             <div class="sun" >
                 <div class="content">
@@ -53,69 +53,5 @@ export default {
 
 <style scoped>
 
-.winner {
-    position: fixed;
-    z-index: 90;
-    top: 0;
-    right: 0;
-    bottom: 10vh;
-    left: 0;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-        will-change: transform;
-    transform: translate3d(0,0,0);
-}
-
-.box {
-    display: flex;
-    width: 60vw;
-    height: 50vh;
-
-    box-shadow: 0px 3px 25px rgba(0, 0, 0, 0.75);
-    border-radius: 15px;
-
-}
-
-.sun {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-
-    background: url(./../assets/sun.svg) 50% 50% no-repeat;   
-    background-size: 150% auto;
-}
-
-
-.legend {
-    margin: 0 0 2vh 0;
-    font-family: Lobster Two;
-    font-size: 2.5vh;
-    line-height: 1em; 
-    text-align: center;
-    letter-spacing: 0.05em;
-      
-    text-align: center;
-
-text-shadow: 0px 1px 0px rgba(0, 0, 0, 0.25);
-
-    
-}
-
-.title {
-    margin: 0;
-    font-family: Henny Penny;
-    font-size: 6vh;
-    letter-spacing: 0.05em;
-    text-align: center;
-
-text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.5);
-
-    
-
-}
 
 </style>
