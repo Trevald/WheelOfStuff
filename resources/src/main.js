@@ -24,7 +24,7 @@ Vue.config.productionTip = false
 
 
 const VUE_APP_API_URL_DEV = "http://wheel.test";
-const VUE_APP_API_URL_PROD = "http://wheelofwhatever.com";
+const VUE_APP_API_URL_PROD = "http://dizzision.com";
 
 switch (true) {
     case window.location.hostname.includes('.test'):

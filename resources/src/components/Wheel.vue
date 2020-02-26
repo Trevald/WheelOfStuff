@@ -358,7 +358,7 @@ export default {
 
 text {
     font-family: 'Henny Penny', cursive;
-    font-size: 1.25vw;
+    font-size: 0.85vw;
     font-weight: 900;
     letter-spacing: 0.1em;
     /*fill: rgba(2505, 255, 255, 1);*/
