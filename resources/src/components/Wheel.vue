@@ -1,17 +1,19 @@
 <template>
   <div id="wheel">
       <div class="wheel-wrapper">
-        <svg viewBox="0 0 500 500" class="wheel" ref="wheel">
-            <ellipse class="wheel-background" cx="250" cy="250" rx="250" ry="250" fill="#D24683"/>
-            <g v-for="(label, index) in labels" :key="index" :transform="getPathTransform(index)">
-                <path :d="getSVGData()" :fill="getFillColor(index)"  />
-                <text x="450" y="250" :fill="getTextFill(index)" text-anchor="end" :transform="getTextTransform(index)">{{label.title}}</text>
-            </g>
+          <div class="wheel">
+            <svg viewBox="0 0 500 500" class="wheel-svg" ref="wheel">
+                <ellipse class="wheel-background" cx="250" cy="250" rx="250" ry="250" fill="#D24683"/>
+                <g v-for="(label, index) in labels" :key="index" :transform="getPathTransform(index)">
+                    <path :d="getSVGData()" :fill="getFillColor(index)"  />
+                    <text x="450" y="250" :fill="getTextFill(index)" text-anchor="end" :transform="getTextTransform(index)">{{label.title}}</text>
+                </g>
 
-            <ellipse class="wheel-dots" cx="251" cy="251" rx="225" ry="225" fill="transparent" stroke="#000000" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
-            <ellipse class="wheel-dots" cx="250" cy="250" rx="225" ry="225" fill="transparent" stroke="#4B5156" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
-        
-        </svg>
+                <ellipse class="wheel-dots" cx="251" cy="251" rx="225" ry="225" fill="transparent" stroke="#000000" stroke-opacity="0.2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
+                <ellipse class="wheel-dots" cx="250" cy="250" rx="225" ry="225" fill="transparent" stroke="#4B5156" stroke-opacity="0.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0 20"/>
+            
+            </svg>
+        </div>
       </div>
     <div class="wheel-border">
 <svg viewBox="0 0 594 594" fill="none" xmlns="http://www.w3.org/2000/svg">

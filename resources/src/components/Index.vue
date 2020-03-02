@@ -191,66 +191,6 @@ overflow: hidden;
 
 }
 
-
-.btn-spin {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2vh 10vh;
-    appearance: none;
-
-    font-family: 'Lobster Two', cursive;
-    font-size: 4vh;
-    letter-spacing: 0.1em;
-    text-align: center;
-    color: #253F2B;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.35), -1px -1px 0px #000000;
-
-
-    background: linear-gradient(180deg, #FFFFFF 0%, #E4E6BC 45%, #989B5E 100%);
-    box-shadow: 0px 1px 10px #000000, 0px 1px 3px #000000, inset 0px 2px 5px #FFFFFF;
-    border-radius: 100rem;
-    border: none;
-
-    transition: all .3s ease;
-    will-change: transform;
-    
-    transform: translate3d(0,0,0);    
-}
-
-@media (orientation: portrait) {
-    .btn-spin {
-        font-size: 4vw;
-    }
-}
-
-.btn-spin:hover {
-    color: #6930B1;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.35), -1px -1px 0px rgba(0,0,0,0.75);
-}
-
-
-.btn-spin:active {
-    transform: translateY(2px);
-    outline: none;
-    color: #854FC9;
-    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.25), -1px -1px 0px rgba(0,0,0,0.5);
-    box-shadow: 0px -2px 10px #000000, 
-                0px -1px 3px #000000, 
-                inset 0px 2px 5px #FFFFFF,
-                inset 0 1px 3px rgba(0,0,0,25);
-}
-
-.btn-spin:focus {
-    outline: none;
-}
-
-.btn-spin:disabled {
-    opacity: 0.5;
-}
-
 .btn-wrapper {
     padding: 2vh;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.15) 0.01%, rgba(0, 0, 0, 0.05) 100%);
@@ -350,8 +290,9 @@ overflow: hidden;
     border-radius: 100rem;
     border: none;
     transition: all .3s ease;
-    animation: glowText 3s ease infinite; 
+    /* animation: glowText 3s ease infinite; */
     mask-image: -webkit-radial-gradient(white, black);
+     will-change: color, text-shadow, box-shadow;
 }
 
 .btn-spin:focus {
@@ -373,6 +314,7 @@ overflow: hidden;
     background: linear-gradient(-250deg, rgba(255, 255, 255, 0) 15.05%, rgba(255, 255, 255, 0.25) 31.74%, #FFFFFF 48.9%, rgba(255, 255, 255, 0.25) 69.76%, rgba(255, 255, 255, 0) 87.84%);
     transform: translateX(-100%);
     opacity: 0.5;
+    will-change: transform, opcaity;
 }
 
 /*
